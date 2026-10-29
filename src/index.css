@@ -1,0 +1,70 @@
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-background-50: #fae9b1;
+  --color-background-100: #F7E9B9;
+
+  /* ── Brand colours ── */
+  --color-brand-50:  #FBF3A1;
+  --color-brand-100: #F7E9B9;
+  --color-brand-200: #6F3817;
+  --color-brand-300: #D68628;
+  --color-brand-400: #0B1619;
+
+  --color-gold-400: #f9c84a;
+  --color-gold-500: #f5b800;
+
+  /* ── Surface colours ── */
+  --color-surface-0:   #0d0a14;
+  --color-surface-50:  #13101e;
+  --color-surface-100: #1a1628;
+  --color-surface-200: #231e35;
+  --color-surface-300: #2e2844;
+
+  /* ── Text ── */
+  --color-ink-muted:   #7a7390;
+  --color-ink-base:    #c9c4dc;
+  --color-ink-heading: #f0ecff;
+
+  /* ── Border ── */
+  --color-edge-subtle: #2e2844;
+  --color-edge-mid:    #3d3660;
+
+  /* ── Font families ── */
+  --font-sans: "Oswald", system-ui, sans-serif;
+  --font-display: "Oswald", system-ui, sans-serif;
+
+  /* ── Border radius ── */
+  --radius-card: 1.5rem;
+  --radius-input: 0.75rem;
+  --radius-pill:  9999px;
+}
+
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap");
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-surface-0);
+  color: var(--color-ink-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface-100); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-edge-mid);
+  border-radius: 9999px;
+}
