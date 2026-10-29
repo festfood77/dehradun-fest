@@ -37,7 +37,12 @@ Deno.serve(async (req) => {
       tickets,
       totalAmount,
       quantities,
+      location,
     } = body;
+
+    // Validate location — only allow known values; default to "Delhi"
+    const ALLOWED_LOCATIONS = ["Delhi", "Dehradun"];
+    const bookingLocation = ALLOWED_LOCATIONS.includes(location) ? location : "Delhi";
 
     // Validate mobile number
     const isEmail = mobile.includes("@");
@@ -187,7 +192,7 @@ Deno.serve(async (req) => {
           total_amount: totalAmount,
           booked_dates,
           booked_types,
-          location: "Dehradun",
+          location: bookingLocation,
           payment_status: "pending",
           razorpay_order_id: razorpayData.id,
         })
