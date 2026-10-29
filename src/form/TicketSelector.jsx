@@ -1,8 +1,8 @@
 import React from "react";
 
 const TICKET_OPTIONS = [
-  { value: 299, name: "Normal" },
-  { value: 599, name: "VIP" },
+  { value: 199, name: "Normal" },
+  { value: 299, name: "VIP" },
 ];
 
 export default function TicketSelector({ value, onChange, error }) {
@@ -11,7 +11,7 @@ export default function TicketSelector({ value, onChange, error }) {
       <legend className="mb-2.5 text-xs font-bold uppercase tracking-[0.16em] text-brand-300">
         Select your ticket
       </legend>
-      <div className="grid grid-cols-3 gap-2.5">
+      <div className="grid grid-cols-2 gap-2.5">
         {TICKET_OPTIONS.map((ticket) => {
           const selected = value === ticket.value;
           return (
