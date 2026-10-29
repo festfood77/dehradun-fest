@@ -36,7 +36,7 @@ export default function LandingPage() {
           <span className="lp-category">Festivals</span>
 
           <h1 className="lp-title">
-            Disney Land Food Fest – The Happiest Food Festival 2.2
+            Disney Land Food Fest – The Happiest Food Festival
           </h1>
 
           <p className="lp-datetime">
