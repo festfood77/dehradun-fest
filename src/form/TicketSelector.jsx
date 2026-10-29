@@ -1,8 +1,9 @@
 import React from "react";
 
 const TICKET_OPTIONS = [
-  { value: 199, name: "Normal" },
-  { value: 299, name: "VIP" },
+  { value: 199, name: "Early Bird" },
+  { value: 350, name: "Couple", originalValue: 400, discount: "Save ₹50" },
+  { value: 299, name: "Premium" },
 ];
 
 export default function TicketSelector({ value, onChange, error }) {
@@ -11,7 +12,7 @@ export default function TicketSelector({ value, onChange, error }) {
       <legend className="mb-2.5 text-xs font-bold uppercase tracking-[0.16em] text-brand-300">
         Select your ticket
       </legend>
-      <div className="grid grid-cols-2 gap-2.5">
+      <div className="grid grid-cols-3 gap-2.5">
         {TICKET_OPTIONS.map((ticket) => {
           const selected = value === ticket.value;
           return (
@@ -32,7 +33,16 @@ export default function TicketSelector({ value, onChange, error }) {
               >
                 ₹{ticket.value}
               </span>
-
+              {ticket.originalValue && (
+                <span className="block text-[10px] text-[#aaa] line-through">
+                  ₹{ticket.originalValue}
+                </span>
+              )}
+              {ticket.discount && (
+                <span className="mt-0.5 inline-block rounded bg-green-100 px-1.5 py-0.5 text-[9px] font-bold text-green-700">
+                  {ticket.discount}
+                </span>
+              )}
               {selected && (
                 <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-brand-300" />
               )}

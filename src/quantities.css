@@ -206,6 +206,44 @@
   background: #f0f0f0;
 }
 
+/* ── DAY SEPARATOR ── */
+.qp-day-separator {
+  padding: 10px 0 4px;
+  margin-top: 4px;
+}
+.qp-day-separator span {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  border-bottom: 2px solid #111;
+  padding-bottom: 3px;
+}
+
+/* ── DISCOUNT BADGE ── */
+.qp-discount-badge {
+  display: inline-block;
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ── ORIGINAL PRICE (strikethrough) ── */
+.qp-ticket-original-price {
+  font-size: 12px;
+  font-weight: 400;
+  color: #aaa;
+  text-decoration: line-through;
+  margin-left: 4px;
+}
+
 /* ── RIGHT / SUMMARY PANEL ── */
 
 /* Mobile: sticky bar at bottom */

@@ -5,10 +5,67 @@ import "./quantities.css";
 const MAX_TICKETS = 5;
 
 const TICKET_TYPES = [
-  { id: "t1_d1", name: "Standard Ticket", description: "General entry – valid for 26th December", date: "26 Dec", day: "Saturday", price: 199, soldOut: false },
-  { id: "t1_d2", name: "Standard Ticket", description: "General entry – valid for 27th December", date: "27 Dec", day: "Sunday", price: 199, soldOut: false },
+  // ── Day 1: 26th December ──────────────────────────────────────────────
+  {
+    id: "eb_d1",
+    name: "Early Bird",
+    description: "Early bird entry – valid for 26th December",
+    date: "26 Dec",
+    day: "Saturday",
+    price: 199,
+    soldOut: false,
+  },
+  {
+    id: "couple_d1",
+    name: "Couple Ticket",
+    description: "Entry for 2 – valid for 26th December",
+    date: "26 Dec",
+    day: "Saturday",
+    price: 350,
+    originalPrice: 400,
+    discount: "Save ₹50",
+    soldOut: false,
+  },
+  {
+    id: "premium_d1",
+    name: "Premium Ticket",
+    description: "Premium entry – valid for 26th December",
+    date: "26 Dec",
+    day: "Saturday",
+    price: 299,
+    soldOut: false,
+  },
 
-  { id: "vip", name: "VIP All Access Pass", description: "Full 2-day VIP access with exclusive perks", price: 299, soldOut: false },
+  // ── Day 2: 27th December ──────────────────────────────────────────────
+  {
+    id: "eb_d2",
+    name: "Early Bird",
+    description: "Early bird entry – valid for 27th December",
+    date: "27 Dec",
+    day: "Sunday",
+    price: 199,
+    soldOut: false,
+  },
+  {
+    id: "couple_d2",
+    name: "Couple Ticket",
+    description: "Entry for 2 – valid for 27th December",
+    date: "27 Dec",
+    day: "Sunday",
+    price: 350,
+    originalPrice: 400,
+    discount: "Save ₹50",
+    soldOut: false,
+  },
+  {
+    id: "premium_d2",
+    name: "Premium Ticket",
+    description: "Premium entry – valid for 27th December",
+    date: "27 Dec",
+    day: "Sunday",
+    price: 299,
+    soldOut: false,
+  },
 ];
 
 
@@ -63,58 +120,78 @@ export default function QuantitiesPage() {
 
           {/* Ticket rows */}
           <div className="qp-ticket-list">
-            {TICKET_TYPES.map((ticket, i) => (
-              <div
-                key={ticket.id}
-                className={`qp-ticket-row${ticket.soldOut ? " qp-ticket-row--soldout" : ""}`}
-              >
-                <div className="qp-ticket-info">
-                  <div className="qp-ticket-name-row">
-                    <p className="qp-ticket-name">{ticket.name}</p>
-                    {ticket.date && ticket.day && (
-                      <span className="qp-date-badge">
-                        {ticket.date} • {ticket.day}
-                      </span>
-                    )}
-                    {ticket.soldOut && (
-                      <span className="qp-sold-out-badge">Sold Out</span>
-                    )}
-                  </div>
-                  <p className="qp-ticket-desc">{ticket.description}</p>
-                  <p className="qp-ticket-price">₹{ticket.price}</p>
-                </div>
-
-                <div className="qp-ticket-right">
-                  {ticket.soldOut ? (
-                    <span className="qp-sold-out-text">Unavailable</span>
-                  ) : (
-                    <div className="qp-qty-wrap">
-                      <select
-                        className="qp-qty-select"
-                        value={quantities[ticket.id]}
-                        onChange={(e) => handleQtyChange(ticket.id, e.target.value)}
-                      >
-                        {Array.from(
-                          { length: Math.min(MAX_TICKETS, MAX_TICKETS - totalTickets + quantities[ticket.id]) + 1 },
-                          (_, n) => (
-                            <option key={n} value={n}>
-                              Qty: {n}
-                            </option>
-                          )
-                        )}
-                      </select>
+            {TICKET_TYPES.map((ticket, i) => {
+              // Insert a day-separator heading before Day 2 tickets
+              const isFirstDay2 = ticket.id === "eb_d2";
+              return (
+                <div key={ticket.id}>
+                  {isFirstDay2 && (
+                    <div className="qp-day-separator">
+                      <span>Day 2 — Sunday, 27th December</span>
                     </div>
                   )}
-                  <span className="qp-ticket-subtotal">
-                    {ticket.soldOut
-                      ? "–"
-                      : `INR ${(ticket.price * quantities[ticket.id]).toLocaleString("en-IN")}`}
-                  </span>
-                </div>
+                  {i === 0 && (
+                    <div className="qp-day-separator">
+                      <span>Day 1 — Saturday, 26th December</span>
+                    </div>
+                  )}
+                  <div
+                    className={`qp-ticket-row${ticket.soldOut ? " qp-ticket-row--soldout" : ""}`}
+                  >
+                    <div className="qp-ticket-info">
+                      <div className="qp-ticket-name-row">
+                        <p className="qp-ticket-name">{ticket.name}</p>
+                        {ticket.discount && (
+                          <span className="qp-discount-badge">{ticket.discount}</span>
+                        )}
+                        {ticket.soldOut && (
+                          <span className="qp-sold-out-badge">Sold Out</span>
+                        )}
+                      </div>
+                      <p className="qp-ticket-desc">{ticket.description}</p>
+                      <p className="qp-ticket-price">
+                        ₹{ticket.price}
+                        {ticket.originalPrice && (
+                          <span className="qp-ticket-original-price"> ₹{ticket.originalPrice}</span>
+                        )}
+                      </p>
+                    </div>
 
-                {i < TICKET_TYPES.length - 1 && <div className="qp-divider" />}
-              </div>
-            ))}
+                    <div className="qp-ticket-right">
+                      {ticket.soldOut ? (
+                        <span className="qp-sold-out-text">Unavailable</span>
+                      ) : (
+                        <div className="qp-qty-wrap">
+                          <select
+                            className="qp-qty-select"
+                            value={quantities[ticket.id]}
+                            onChange={(e) => handleQtyChange(ticket.id, e.target.value)}
+                          >
+                            {Array.from(
+                              { length: Math.min(MAX_TICKETS, MAX_TICKETS - totalTickets + quantities[ticket.id]) + 1 },
+                              (_, n) => (
+                                <option key={n} value={n}>
+                                  Qty: {n}
+                                </option>
+                              )
+                            )}
+                          </select>
+                        </div>
+                      )}
+                      <span className="qp-ticket-subtotal">
+                        {ticket.soldOut
+                          ? "–"
+                          : `INR ${(ticket.price * quantities[ticket.id]).toLocaleString("en-IN")}`}
+                      </span>
+                    </div>
+
+                    {i < TICKET_TYPES.length - 1 && !TICKET_TYPES[i + 1]?.id?.startsWith("eb_d2") && (
+                      <div className="qp-divider" />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 

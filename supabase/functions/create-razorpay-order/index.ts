@@ -67,18 +67,25 @@ Deno.serve(async (req) => {
     if (quantities && typeof quantities === "object") {
       Object.entries(quantities).forEach(([id, qty]) => {
         if (typeof qty === "number" && qty > 0) {
-          if (id.includes("_d1")) datesSet.add("26 Dec 2026");
-          if (id.includes("_d2")) datesSet.add("27 Dec 2026");
+          // Dates
+          if (id.endsWith("_d1")) datesSet.add("26 Dec 2026");
+          if (id.endsWith("_d2")) datesSet.add("27 Dec 2026");
+
+          // Types — new ticket IDs
+          if (id.startsWith("eb_"))      typesSet.add("Early Bird");
+          if (id.startsWith("couple_"))  typesSet.add("Couple Ticket");
+          if (id.startsWith("premium_")) typesSet.add("Premium Ticket");
+
+          // Legacy IDs (kept for backwards compatibility)
           if (id === "vip") {
             datesSet.add("26 Dec 2026");
             datesSet.add("27 Dec 2026");
             typesSet.add("VIP All Access Pass");
           }
-      
           if (id.startsWith("eb1")) typesSet.add("Early Bird Pass");
           if (id.startsWith("eb2")) typesSet.add("Early Bird Plus");
-          if (id.startsWith("t1")) typesSet.add("Standard Ticket");
-          if (id.startsWith("t2")) typesSet.add("Standard Ticket Plus");
+          if (id.startsWith("t1"))  typesSet.add("Standard Ticket");
+          if (id.startsWith("t2"))  typesSet.add("Standard Ticket Plus");
         }
       });
     }
@@ -180,6 +187,7 @@ Deno.serve(async (req) => {
           total_amount: totalAmount,
           booked_dates,
           booked_types,
+          location: "Dehradun",
           payment_status: "pending",
           razorpay_order_id: razorpayData.id,
         })
