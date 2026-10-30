@@ -99,7 +99,7 @@ export default function LandingPage() {
       {/* ── STICKY BOOK NOW BAR ── */}
       <div className={`lp-sticky${showStickyBar ? " lp-sticky--show" : ""}`}>
         <p className="lp-sticky-title">
-          Disney Land Food Fest – The Happiest Food Festival 2.2
+          Disney Land Food Fest – The Happiest Food Festival
         </p>
         <button
           className="lp-sticky-btn"
