@@ -8,14 +8,17 @@ export default function LandingPage() {
   const [showStickyBar, setShowStickyBar] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setShowStickyBar(!entry.isIntersecting);
-      },
-      { threshold: 0 },
-    );
-    if (heroBookRef.current) observer.observe(heroBookRef.current);
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      if (!heroBookRef.current) return;
+      const rect = heroBookRef.current.getBoundingClientRect();
+      // Show bar as soon as the hero Book Now button scrolls out of view
+      setShowStickyBar(rect.bottom < 0);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Run once on mount in case the page is already scrolled
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
