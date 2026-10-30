@@ -65,16 +65,18 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── DESCRIPTION SECTION ── */}
-      <section className="lp-desc">
-        {/* ── MIDDLE IMAGE ── */}
+      {/* ── MIDDLE IMAGE ── */}
+      <section className="lp-middle-image px-2 py-4">
         <img
           src="/img.avif"
           alt="Event Poster Landscape"
-          className="rounded-sm"
+          className="lp-middle-img"
         />
+      </section>
 
-        <div className="lp-desc-inner mb-8 mt-6">
+      {/* ── DESCRIPTION SECTION ── */}
+      <section className="lp-desc">
+        <div className="lp-desc-inner mb-8">
           <h2 className="lp-desc-heading">DESCRIPTION</h2>
 
           {[
