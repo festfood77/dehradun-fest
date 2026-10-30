@@ -12,7 +12,7 @@ const TICKET_TYPES = [
     description: "Early bird entry – valid for 26th December",
     date: "26 Dec",
     day: "Saturday",
-    price: 199,
+    price: 1, // TEMP: testing only, revert to 199
     soldOut: false,
   },
   {
@@ -43,7 +43,7 @@ const TICKET_TYPES = [
     description: "Early bird entry – valid for 27th December",
     date: "27 Dec",
     day: "Sunday",
-    price: 199,
+    price: 1, // TEMP: testing only, revert to 199
     soldOut: false,
   },
   {
